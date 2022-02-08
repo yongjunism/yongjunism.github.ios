@@ -1,7 +1,7 @@
 ---
 layout: list
-title: Stationery
-slug: stationery
+title: TIL
+slug: til
 menu: true
 submenu: false
 order: 6
