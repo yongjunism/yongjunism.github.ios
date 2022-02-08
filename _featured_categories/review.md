@@ -5,6 +5,7 @@ slug: review
 menu: true
 submenu: true
 order: 6
-description: >
-  보고 사용한것들을 리뷰합니다. 라이트한 축에 속하는 하드웨어덕이며, 술, 맛집 등을 좋아합니다.
+description: |
+  조금만 찾아보면 맛집이 있는데 왜 아무데나 가서 먹어야할까요?
+  책 사는 것을 좋아합니다. 문구류에도 관심이 많아요.
 ---
