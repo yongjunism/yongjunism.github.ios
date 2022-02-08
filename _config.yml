@@ -2,7 +2,7 @@
 #  User configuration
 # -----------------------------------------------------------------------------
 
-title:               Yongjun
+title:               YJ's devlog
 
 # The unique resource location of your page.
 # Set to `https://<username>.github.io` when hosting on GitHub Pages
@@ -13,12 +13,13 @@ url:                 https://yongjunism.github.io
 baseurl:            ""
 
 # A very short description of your page
-tagline:             수홍이에 매력에 푹 빠져서 헤어나오지 못하는 사람
+tagline:             I am Awesome !
 
 # A short description of the page, used in the sidebar and as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
 description:         >
-  이 블로그를 왜 쓰는지 아직은 잘 모르겠다. 하지만 희열이 느껴진다.
+ IE & CS
+ KT AIVLE 1기
 
 # This should be the same author as first entry in `_data/authors.yml`
 author:
