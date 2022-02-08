@@ -1,7 +1,6 @@
-# numpy, pandas
 ---
 layout: post
-title: 'Numpy 와 Pandas를 알아보자'
+title: 'Numpy와 Pandas'
 subtitle: 'numpy와 pandas를 알아보자'
 categories: devlog
 tags: python
