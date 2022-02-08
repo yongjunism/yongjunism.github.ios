@@ -1,14 +1,12 @@
 # numpy, pandas
 ---
 layout: post
-title: 'numpy 와 pandas를 알아보자'
+title: 'Numpy 와 Pandas를 알아보자'
 subtitle: 'numpy와 pandas를 알아보자'
 categories: devlog
 tags: python
 comments: true
 ---
-
-# AIVLE 2022-02-08 TIL
 
 
 ## 1.라이브러리 불러오기
