@@ -13,12 +13,13 @@ url:                 https://yongjunism.github.io
 baseurl:            ""
 
 # A very short description of your page
-tagline:             I am Awesome !
+tagline:             Try to be Awesome !
 
 # A short description of the page, used in the sidebar and as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
 description:         >
  IE & CS
+ 
  KT AIVLE 1기
 
 # This should be the same author as first entry in `_data/authors.yml`
