@@ -1,0 +1,40 @@
+# numpy, pandas
+---
+layout: post
+title: 'numpy 와 pandas를 알아보자'
+subtitle: 'numpy와 pandas를 알아보자'
+categories: devlog
+tags: python
+comments: true
+---
+
+# AIVLE 2022-02-08 TIL
+
+
+## 1.라이브러리 불러오기
+
+```
+# 라이브러리 불러오기
+import numpy as np
+```python
+
+## 2. 배열 만들기
+
+파이썬에서 배열이라고 하면, numpy 배열을 의미한다.
+데이터를 다루는 데 있어서, 배열로 변환해 연산을 하거나, 결과가 배열로 표시하면 좋을 때가 있다.
+특히, 데이터 분석을 할 때, 리스트보다도 유용하게 쓰이기 때문에 배열에 대한 개념을 잘 숙지해야 한다.
+
+### 2.1. 용어 정리
+
+<img src='https://raw.githubusercontent.com/Jangrae/img/master/array.png' width=300 align="left"/>
+
+[용어]
+axis : 배열의 각 축
+rank : 축의 개수
+shape : 축의 길이, 배열의 크기
+
+
+### 2.2 배열 만들기
+
+
+
