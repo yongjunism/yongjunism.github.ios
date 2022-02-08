@@ -1,8 +1,9 @@
 ---
 layout: tag-blog
-title: Data
-slug: data
-category: devlog
+title: Book
+slug: book
+category: review
 menu: false
 order: 2
 ---
+

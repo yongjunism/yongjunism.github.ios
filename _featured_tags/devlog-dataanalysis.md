@@ -1,9 +1,8 @@
 ---
 layout: tag-blog
-title: Vue
-slug: vue
+title: Data Analysis
+slug: data analysis
 category: devlog
 menu: false
 order: 2
-header-img: "/img/vue-logo.png"
 ---

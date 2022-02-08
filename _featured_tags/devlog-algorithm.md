@@ -1,5 +1,5 @@
 ---
-layout: tag-blog
+lyout: tag-blog
 title: Algorithm
 slug: algorithm
 category: devlog
