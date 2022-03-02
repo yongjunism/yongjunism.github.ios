@@ -1,0 +1,186 @@
+URL
+
+Uniform Resource Locator
+http://news.naver.c
+
+https:// - protocol
+news - sub domain
+naver.com - domanin
+80 - port
+/main/ - path
+read.nhn - page
+?mode=LSD&mid=shm&sid1=105&oid=001&aid=0009847211 - query
+## da_727145 - fragment
+
+client - browser
+server - web application. db랑 연결되어있음
+그 사이에 인터넷망이 있음
+
+url을 통해서 인터넷망을 통해서 서버로 요청을 하고, 서버에서 웹 어플리케이션을 요청함
+웹 어플리케이션 요청을 받으면 db에 요청해서 데이터를 가져와서 다시 인터넷망을 통해서 브라우저로 전송
+
+n.com을 치면 인터넷망에 있는 dns 서버가 ip address를 도메인을 통해서 가져옴. 이 ip를 통해 서버까지 갈 수 있음
+
+port가 해주는 역할 - 서버에는 WA만 있는 것이 아니라 DBS가 추가로 있을 수 있음. 3306번 포트같은 것
+도메인과 포트 번호로 WA까지 도달을 한 것
+
+클라이언트에서 서버쪽으로 데이터를 전송할때 그것을 담은 것이 query
+
+브라우저 역할 1. 브라우저를 이용해서 서버에 데이터를 request
+2. 서버로부터 data를 받아온 response를 화면에 보여
+
+
+get - url에 데이터가 포함된다. -> 데이터가 노출
+-길이 제한이 있다
+post
+-body에 데이터가 포함된다 -> 데이터가 숨겨짐
+
+internet
+인터넷이란?
+-인터넷은 컴퓨터로 연결하여 TCP/IP라는 통신 프로토콜을 이용해 정보를 주고받는 컴퓨터 네트워크
+
+우리는 인터넷을 어떻게 사용하고 있을까?
+-해저 케이블을 이용하여 전세계 서버에 접속하여 인터넷을 사용하고 있다.
+
+무선인터넷
+-선이 아니라 주파수를 매체로 사용한다.
+-우리가 사용하는 단말기만 무선이다.
+
+
+OSI 7 Layer
+Open Systems 
+
+
+Cookie
+-Client에 저장하
+
+
+
+13:05~
+robots.txt 크롤링 정책
+user-agent는 어떤 client인
+
+### 크롤링 정책
+- robots.txt : 크롤링 정책을 설명한 페이지
+- 과도한 크롤링으로 서비스에 영향을 주었을때 법적 문제가 있을 수 있지만, 아직 크롤링 법은 없다.
+- 사람인, 잡코리아 간의 소송은 2008년에 시작해서 2018년에 판결이 났다.
+- API를 사용하는 것이 가장 좋고, 그렇지 않으면 robots.txt 정책을 준수하거나, 서비스에 피해가 가지 않는 선에서 수집해야 한다.
+- 서비스 피해라고 하면 다음의 사항들을 말한다.
+    - 지적재산권
+    - 서비스 과부화
+    - 데이터 사용표준
+
+###  API 서비스를 이용한 데이터 수집
+- kakao api(application programing interface)
+- application 등록을 하면 app_key 를 받는다.
+- document를 확인해서 url을 찾아낸다.
+- url, app_key, data로 request하면 json 포맷의 str 타입으로 response를 받는다.
+- json 포맷의 str타입 데이터를 list나 dict로 파싱한다.
+
+```python
+# kakao 번역 api
+import json
+import requests
+import pandas as pd
+
+# 1. application 등록 : app_key
+APP_KEY - "52b1219db9d8b14e2c45cf6987cc2484"
+
+# 2. document 확인 : url
+# post : url, params, headers
+url = "https://dapi.kakao.com/v2/translation/translate
+params = {"query": "파이썬 웹크롤링 수업입니다.",
+	  "src_lang": "ko",
+          "target_lang": "en"}
+headers = {"Authorization": f"KakaoAK {APP_KEY}"}
+
+# 3. request(url, app_key, data) > response(json(str))
+response = requests.post(url, params, headers=headers)
+
+# 4. json(str) > list, dict
+en_txt = response.json()["translated_text"][0][0]
+
+# 5. function
+def translate(text, src="kr", target"en"):
+    APP_KEY - "52b1219db9d8b14e2c45cf6987cc2484"
+    url = "https://dapi.kakao.com/v2/translation/translate
+    params = {"query": "파이썬 웹크롤링 수업입니다.",
+	  "src_lang": "ko",
+          "target_lang": "en"}
+    headers = {"Authorization": f"KakaoAK {APP_KEY}"}
+    response = requests.post(url, params, headers=headers)
+    return response.json()["translated_text"][0][0]
+
+df = pd.DataFrame(
+    [{"id":1, "title": "파이썬은 재미있습니다."},
+     {"id":2, "title": "웹크롤링은 재미있습니다."}]
+)
+
+df["en_title"] = df["title"].apply(translate)
+df
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4:50~
+
+request headers의 정보를 서버가 확인할 수 있다.
+url, params, header
+header의 user agent에는
+
+파이썬 코드로 요청을 하면 header의 user agent로 python이 들어간다. 정상적인 user agent가 아니면 403을 출력하고 데이터를 보내지 않음. 하지만 정상적으로 데이터를 받아볼 수 있음. header값을 정상적인 user agent로 바꾸어서 요청을 하면 정상적인 데이터를 클라이언트쪽으로 보내준다.
+
+요청할때 header의 user agent를 window의 chrome을 사용한다고 보내면 어? 정상적인 사용자네? 하고 데이터를 보내준다.
+
+
+
+# summary
+
+# web : client-server : url
+# python : requests : request > response
+# 동적페이지: URL의 변화 없이 페이지의 데이터를 변환 : json
+# 정적페이지: URL을 변환해서 새로운 데이터를 출력 : html
+
+# 동적 페이지에서 데이터 수집 절차
+# 1. 웹서비스분석(개발자도구) : URL
+# 2. request(url, params, headers) > response(data) : data(json(str))
+# 3. data(json(str)) > list, dict > DataFrame
+
+# API를이용한 데이터 수집
+# 1. 어플리케이션 등록 : app_key
+# 2. api 문서 확인 : url, params, headers
+# 3. request(url, params, headers(app_key)) > response(data) : data(json(str))
+# 4. data(json(str)) > list, dict > DataFrame
+
+# naver : index price, exchange rate
+# kakao api : translate
+# zigbang : requests 3번, geohash
+# daum exchange rate : headers(user-agent, referer)
+
+서버 입장에서는 request 객체에는 header 안에 있는 referer를 확인해서 어떤 서비스에서 요청했는지
+referer :
+
+
+
+

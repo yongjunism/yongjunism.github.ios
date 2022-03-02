@@ -1,0 +1,111 @@
+## 데이터 전처리
+
+### 불필요한 변수 제거
+- axis=0은 행, axis=1은 열을 의미한다.
+- inplace = True로 설정하면 데이터프레임에 실행 결과가 반영된다.
+- inplace = False로 두고 변수에 담아도 된다.
+
+```python
+drop_col = ['Cabin', 'PassengerId', 'Name', 'Ticket']
+titanic.drop(drop_col, axis=1, inplace=True)
+```
+
+## NaN 조치
+
+```python
+
+# NaN 확인
+titanic.isna().sum()
+titanic.isna().sum() / len(titanic) * 100
+
+# NaN이 포함된 모든 행(axis=0) 제거
+titanic.dropna(axis=0, inplace=True)
+
+# Age 변수에 NaN이 포함된 행만 제거
+titanic.dropna(subset=['Age'], axis=0, inplace=True)
+
+# NaN 열이 포함된 모든 변수(axis=1) 제거
+titanic.dropna(axis=1, inplace=True)
+``` 
+
+## NaN 채우기
+
+### 앞/뒤 값으로 채우기
+- 시계열 데이터인 경우 많이 사용하는 방법이다.
+- method='ffill' : 바로 앞의 값으로 채우기
+- method='bfill' : 바로 뒤의 값으로 채우
+
+```python
+air['Ozone'].fillna(method='ffill', inplace=True)
+
+air['Solar.R].fillna(method='bfill', inplace=True)
+
+### 선형보간법으로 채우기
+- interpolate 메소드에 method='linear' 옵션을 지정해 선형 보간법으로 채운다.
+
+```python
+air.interpolate(method='linear', inplace=True) 
+```
+
+### 특정 값으로 채우기
+<ol>
+  <li> 평균값으로 채우기</li>
+```python
+mean_age = titanic['Age'].mean()
+titanic['Age'].fillna(mean_age, inplace=True)
+```
+  <li> 최빈값으로 채우기</li>
+```python
+# dropna=True이면 NaN을 무시한다.
+# 최빈값을 확인하여 넣어주기
+titanic['Embarked'].value_counts(dropna=True)
+titanic['Embarked'].fillna('S', inplace=True)
+
+# 최빈값 바로 넣어주기
+titanic['Embarked].fillna(titanic['Embarked'.mode(dropna=True).loc[0], inplace=True)
+```
+</ol>
+
+## 가변수화(One-Hot Encoding)
+- 다중공선성 문제를 없애기 위해 drop_first=True 옵션을 지정한다.
+
+```python
+cols = ['PClass', 'Sex', 'Embarked']
+titanic = pd.get_dummies(titanic, coolumns=cols, drop_first=True)
+
+```
+
+## 데이터 분리
+- 머신러닝 모델링을 위해서는 x,y로 데이터를 분리해야 한다.
+- 독립변수와 종속변수를 나누는 과정이다.
+
+```python
+# Target 지정
+target = 'Survived'
+
+# x,y 분리
+x = titanic.drop(target, axis=1)
+y = titanic.loc[:, target]
+# 또는 y = titanic[target]
+```
+
+## 정규화
+- 모든 변수가 동일한 범위의 값을 갖도록 일괄적으로 처리하는 것을 정규화라고 한다.
+- 거리를 사용해 예측하는 알고리즘의 경우 정규화 과정이 필수적이다.
+
+$$\large x_{new}=\frac{x-x_{min}}{x_{max}-x_{min}} $$
+```python
+# 정규화 (모두 0~1 사이 값으로 변경)
+x = (x-x.min()) / (x.max()-x.min())
+# 또는 sklearn 라이브러리에 있는 정규화 모듈을 이용할 수도 있다.
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+```
+
+
+분류인지 회귀인지 구분하는 법
+연수입이 5000과 6000 중에서 5500인건 의미가 있다
+이탈여부를 0과 1이라고 할때 이탈여부가 0.5인건 의마가없
+
+training validation testing
+학습 모의고사 수능 느
